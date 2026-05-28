@@ -19,7 +19,7 @@ const AuthCallbackPage = () => {
       return;
     }
 
-    setToken(accessToken, refreshToken, role);
+    setToken(accessToken, refreshToken, role ?? '');
 
     navigate(role === 'ADMIN' ? '/admin/profile' : '/', { replace: true });
   }, []);
