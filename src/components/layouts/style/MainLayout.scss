@@ -1,0 +1,147 @@
+@use 'sass:color';
+
+$bg-primary: var(--color-background);
+$bg-header: var(--color-background);
+$color-logo: var(--color-text);
+$color-nav: var(--color-text-secondary);
+$color-nav-hover: var(--color-text);
+$border-header: var(--color-card-border);
+$font-logo: 'Sora', sans-serif;
+$font-nav: 'DM Sans', sans-serif;
+$header-height: 72px;
+$transition: 0.25s ease;
+
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $bg-primary;
+  font-family: $font-nav;
+  transition: background-color $transition;
+
+  &__header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: $header-height;
+    padding: 0 8%;
+    background-color: $bg-header;
+    border-bottom: 1px solid $border-header;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: background-color $transition, border-color $transition;
+  }
+
+  &__logo {
+    font-family: $font-logo;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-logo;
+    user-select: none;
+    transition: color $transition, opacity $transition;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &__header-right {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    @media (max-width: 640px) {
+      gap: 16px;
+    }
+  }
+
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @media (max-width: 640px) {
+      display: none; // Hides main menu links on very small mobile for simplistic theme presentation
+    }
+  }
+
+  &__menu-item {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: $color-nav;
+    text-decoration: none;
+    transition: color $transition, background-color $transition;
+
+    &:hover {
+      color: $color-nav-hover;
+      background-color: var(--color-card-bg);
+    }
+  }
+
+  // Controls container (theme switcher & lang)
+  &__controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  // Reusable header control button
+  &__control-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--color-card-border);
+    background: var(--color-card-bg);
+    color: var(--color-text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all $transition;
+
+    &:hover {
+      color: var(--color-text);
+      border-color: var(--color-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(129, 140, 248, 0.15);
+    }
+
+    &--lang {
+      width: auto;
+      border-radius: 20px;
+      padding: 0 12px;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  &__content {
+    flex: 1;
+    width: 100%;
+  }
+
+  &__footer {
+    padding: 32px 8%;
+    text-align: center;
+    font-size: 13px;
+    color: var(--color-text-muted);
+    border-top: 1px solid $border-header;
+    background: $bg-primary;
+    transition: background-color $transition, border-color $transition;
+  }
+}

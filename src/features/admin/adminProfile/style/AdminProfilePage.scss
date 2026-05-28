@@ -1,0 +1,135 @@
+.admin-profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  max-width: 780px;
+  margin: 0 auto;
+  width: 100%;
+
+  // ─── Header ──────────────────────────────────────────────────────────
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-md);
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    background: rgba(99, 102, 241, 0.12);
+    border: 0.5px solid rgba(99, 102, 241, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    color: #818cf8;
+    flex-shrink: 0;
+  }
+
+  &__title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: #e5e5e5;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    font-size: var(--text-sm);
+    color: rgba(255, 255, 255, 0.35);
+    margin-top: 2px;
+  }
+
+  // ─── Card ─────────────────────────────────────────────────────────────
+  &__card {
+    background: rgba(255, 255, 255, 0.025);
+    border: 0.5px solid rgba(255, 255, 255, 0.07);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    animation: cardFadeIn 0.3s ease;
+  }
+
+  // ─── Loading ──────────────────────────────────────────────────────────
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-2xl) 0;
+    color: rgba(255, 255, 255, 0.4);
+    font-size: var(--text-sm);
+  }
+
+  &__spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(99, 102, 241, 0.2);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+  }
+
+  // ─── Empty state ──────────────────────────────────────────────────────
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg) 0 var(--spacing-sm);
+    color: rgba(255, 255, 255, 0.25);
+    font-size: var(--text-sm);
+    text-align: center;
+
+    .anticon {
+      font-size: 32px;
+      color: rgba(99, 102, 241, 0.3);
+    }
+  }
+
+  // ─── Meta badge ───────────────────────────────────────────────────────
+  &__meta {
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: var(--text-xs);
+    color: rgba(255, 255, 255, 0.4);
+
+    strong {
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 500;
+    }
+  }
+
+  &__badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #34d399;
+    flex-shrink: 0;
+  }
+}
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

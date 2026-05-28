@@ -1,0 +1,104 @@
+.admin-layout {
+  min-height: 100vh;
+
+  &__sider {
+    background: #0f172a !important;
+    border-right: 0.5px solid rgba(255, 255, 255, 0.06) !important;
+    display: flex;
+    flex-direction: column;
+
+    .ant-layout-sider-children {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__logo {
+    padding: var(--spacing-lg) var(--spacing-md);
+    font-size: var(--text-md);
+    font-family: 'Fira Code', 'Courier New', monospace;
+    letter-spacing: -0.5px;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06);
+    margin-bottom: var(--spacing-sm);
+
+    .logo-bracket { color: #6366f1; font-weight: 600; }
+    .logo-text { color: #e5e5e5; margin: 0 3px; }
+  }
+
+  &__menu {
+    flex: 1;
+    background: transparent !important;
+    border: none !important;
+
+    .ant-menu-item {
+      color: rgba(255, 255, 255, 0.5) !important;
+      border-radius: var(--radius-sm) !important;
+      margin: 2px var(--spacing-sm) !important;
+      width: calc(100% - 16px) !important;
+      transition: all var(--transition-fast) !important;
+
+      a {
+        color: inherit !important;
+        text-decoration: none;
+      }
+
+      &:hover {
+        background: rgba(99, 102, 241, 0.08) !important;
+        color: #e5e5e5 !important;
+      }
+
+      &.ant-menu-item-selected {
+        background: rgba(99, 102, 241, 0.15) !important;
+        color: #818cf8 !important;
+
+        &::after { display: none !important; }
+      }
+    }
+
+    .ant-menu-item-icon {
+      font-size: var(--text-md) !important;
+    }
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+    margin: var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border-top: 0.5px solid rgba(255, 255, 255, 0.06);
+
+    &:hover {
+      background: rgba(248, 113, 113, 0.08);
+      color: #f87171;
+    }
+  }
+
+  &__header {
+    background: #0f172a !important;
+    border-bottom: 0.5px solid rgba(255, 255, 255, 0.06) !important;
+    padding: 0 var(--spacing-lg) !important;
+    display: flex;
+    align-items: center;
+    height: 56px !important;
+    line-height: 56px !important;
+
+    &-title {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: var(--text-sm);
+      letter-spacing: 0.3px;
+    }
+  }
+
+  &__content {
+    background: #080f1e !important;
+    padding: var(--spacing-lg);
+    min-height: calc(100vh - 56px);
+    overflow-y: auto;
+  }
+}

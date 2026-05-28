@@ -1,0 +1,234 @@
+.projects-page {
+  min-height: 100vh;
+  width: 100%;
+  background: var(--color-background);
+  color: var(--color-text);
+  font-family: 'Be Vietnam Pro', sans-serif;
+  padding: 24px 0;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--transition-normal);
+
+  // Background glow ambient effects
+  &::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 350px;
+    height: 350px;
+    background: rgba(129, 140, 248, 0.05);
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+  }
+
+  &__container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+  }
+
+  &__header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  &__badge {
+    padding: 6px 16px;
+    background: rgba(129, 140, 248, 0.1);
+    border: 1px solid rgba(129, 140, 248, 0.2);
+    border-radius: 999px;
+    color: var(--color-primary);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    display: inline-block;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  &__title {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
+    margin: 0 0 12px 0;
+    letter-spacing: -1px;
+    line-height: 1.2;
+  }
+
+  &__subtitle {
+    font-size: clamp(14px, 2.5vw, 16px);
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  // Search Controls
+  &__search-box {
+    max-width: 600px;
+    width: 100%;
+    margin: 0 0 40px auto;
+    display: flex;
+    gap: var(--spacing-sm);
+  }
+
+  &__search-input-wrap {
+    position: relative;
+    flex: 1;
+  }
+
+  &__search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-secondary);
+    font-size: 16px;
+    opacity: 0.6;
+  }
+
+  &__search-input {
+    width: 100%;
+    padding: 12px 14px 12px 42px;
+    border-radius: 12px;
+    border: 1.5px solid var(--color-card-border);
+    background: var(--color-card-bg);
+    color: var(--color-text);
+    font-size: 14.5px;
+    transition: all var(--transition-fast);
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+    }
+
+    &::placeholder {
+      color: var(--color-text-secondary);
+      opacity: 0.5;
+    }
+  }
+
+  &__search-btn {
+    padding: 0 24px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid var(--color-primary);
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    &:hover {
+      background: #6366f1;
+      border-color: #6366f1;
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-glow);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  // Count metadata
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--color-card-border);
+    font-size: 14px;
+    color: var(--color-text-secondary);
+  }
+
+  &__count {
+    font-weight: 600;
+    color: var(--color-text);
+  }
+
+  // Main projects grid
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    width: 100%;
+    margin-bottom: 32px;
+  }
+
+  // Loading
+  &__loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    font-size: 15px;
+    padding: 100px 0;
+  }
+
+  &__spinner {
+    width: 22px;
+    height: 22px;
+    border: 2.5px solid rgba(129, 140, 248, 0.2);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  // Empty state
+  &__empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    color: var(--color-text-secondary);
+    padding: 80px 0;
+
+    .anticon {
+      font-size: 48px;
+      color: rgba(129, 140, 248, 0.25);
+    }
+
+    p {
+      font-size: 14.5px;
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 640px) {
+    padding: 16px 24px;
+    
+    &__search-box {
+      flex-direction: column;
+    }
+    
+    &__search-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

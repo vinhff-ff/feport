@@ -1,0 +1,122 @@
+.admin-project-card {
+  display: flex;
+  background: var(--color-card-bg);
+  border: 1.5px solid var(--color-card-border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm);
+  transition: all var(--transition-normal);
+  align-items: center;
+
+  &:hover {
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+  }
+
+  // Cover image
+  &__image-wrap {
+    width: 100px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--color-glow-1) 0%, var(--color-glow-2) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-card-border);
+    flex-shrink: 0;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__image-placeholder {
+    color: var(--color-text-secondary);
+    font-size: 20px;
+  }
+
+  // Info
+  &__info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0; // prevent text overflow
+  }
+
+  &__name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--color-text);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__desc {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    line-height: 1.4;
+  }
+
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-top: 4px;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+
+    &:hover {
+      color: var(--color-primary);
+    }
+
+    &--demo {
+      &:hover {
+        color: #10b981; // emerald demo color
+      }
+    }
+  }
+
+  // Actions
+  &__actions {
+    display: flex;
+    gap: var(--spacing-xs);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--spacing-md);
+    
+    &__image-wrap {
+      width: 100%;
+      height: 140px;
+    }
+
+    &__actions {
+      margin-top: var(--spacing-sm);
+      justify-content: flex-end;
+    }
+  }
+}

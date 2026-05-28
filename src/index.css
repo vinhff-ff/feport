@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;800&display=swap');
+:root, [data-theme='dark'] {
+  --color-background: #0f172a;
+  --color-text: #ffffff;
+  --color-text-secondary: rgba(255, 255, 255, 0.65);
+  --color-text-muted: rgba(255, 255, 255, 0.35);
+  --color-card-bg: rgba(255, 255, 255, 0.02);
+  --color-card-border: rgba(255, 255, 255, 0.06);
+  --color-badge-bg: rgba(129, 140, 248, 0.05);
+  --color-badge-border: rgba(129, 140, 248, 0.3);
+  --color-primary: #818cf8;
+  --color-divider: rgba(255, 255, 255, 0.15);
+  --color-timeline-marker-bg: #0f172a;
+  --color-timeline-line: rgba(129, 140, 248, 0.45);
+  --color-glow-1: rgba(99, 102, 241, 0.08);
+  --color-glow-2: rgba(192, 132, 252, 0.06);
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 999px;
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-2xl: 48px;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.24);
+  --shadow-glow: 0 0 24px rgba(37, 99, 235, 0.35);
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 40px;
+  --text-hero: clamp(60px, 10vw, 130px);
+}
+
+[data-theme='light'] {
+  --color-background: #f8fafc;
+  --color-text: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-muted: #64748b;
+  --color-card-bg: #ffffff;
+  --color-card-border: #e2e8f0;
+  --color-badge-bg: rgba(79, 70, 229, 0.05);
+  --color-badge-border: rgba(79, 70, 229, 0.2);
+  --color-primary: #4f46e5;
+  --color-divider: rgba(0, 0, 0, 0.08);
+  --color-timeline-marker-bg: #ffffff;
+  --color-timeline-line: rgba(79, 70, 229, 0.3);
+  --color-glow-1: rgba(79, 70, 229, 0.04);
+  --color-glow-2: rgba(147, 51, 234, 0.03);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+
+  min-height: 100vh;
+}
+
+body {
+  background: var(
+    --color-background
+  );
+
+  color: var(--color-text);
+
+  font-family:
+    Inter,
+    sans-serif;
+
+  overflow-x: hidden;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+}
