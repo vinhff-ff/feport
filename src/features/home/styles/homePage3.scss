@@ -121,10 +121,8 @@
     transition: transform var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
 
     .ant-steps-item:hover & {
-      transform: scale(1.1);
       border-color: #c084fc;
       color: #c084fc;
-      box-shadow: 0 0 12px rgba(192, 132, 252, 0.4);
     }
   }
 
@@ -174,7 +172,6 @@
     .ant-steps-item:hover & {
       background: rgba(99, 102, 241, 0.025);
       border-color: rgba(129, 140, 248, 0.2);
-      transform: translateX(4px);
     }
   }
 

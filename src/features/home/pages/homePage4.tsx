@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { AppstoreOutlined } from '@ant-design/icons'
+import { AppstoreOutlined, ArrowRightOutlined } from '@ant-design/icons'
 import { useProjectQuery } from '../../../hooks/useProjectQuery'
 import { useTranslation } from '../../../i18n/useTranslation'
 import ProjectCard from '../../../components/ui/ProjectCard'
@@ -48,7 +48,7 @@ const HomePage4 = () => {
             <div className="home-page-4__cta">
               <Link to="/projects">
                 <Button variant="primary" size="lg" borderRadius="var(--radius-full)" style={{ padding: '12px 28px' }}>
-                  {t('viewMoreProjects')}
+                  {t('viewMoreProjects')} <ArrowRightOutlined style={{marginLeft:"5px"}}/>
                 </Button>
               </Link>
             </div>

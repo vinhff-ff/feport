@@ -120,7 +120,6 @@
     gap: 14px;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), box-shadow var(--transition-fast);
     animation: cardIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
     transform: translateY(15px);
@@ -129,8 +128,6 @@
     &:hover {
       background: rgba(56, 189, 248, 0.03);
       border-color: rgba(56, 189, 248, 0.25);
-      transform: translateY(-4px);
-      box-shadow: 0 10px 25px rgba(56, 189, 248, 0.05);
     }
   }
 
@@ -147,7 +144,6 @@
 
   &__skill-card:hover &__skill-icon-wrap {
     color: var(--color-primary);
-    transform: scale(1.08);
   }
 
   &__skill-img {

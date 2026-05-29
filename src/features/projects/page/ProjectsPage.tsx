@@ -5,11 +5,12 @@ import { useTranslation } from '../../../i18n/useTranslation'
 import projectService from '../../admin/project/service/projectService'
 import ProjectCard from '../../../components/ui/ProjectCard'
 import Pagination from '../../../components/ui/Pagination'
+import Button from '../../../components/ui/Button'
 import { paginateData, countProjects } from '../../../utils/projectHelpers'
 import type { Project } from '../../../types/Project'
 import '../style/ProjectsPage.scss'
 
-const ProjectsPage =() => {
+const ProjectsPage = () => {
   const { projects = [], loading } = useProjectQuery()
   const { t } = useTranslation()
 
@@ -22,7 +23,6 @@ const ProjectsPage =() => {
   const [searchLoading, setSearchLoading] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
 
-  // Clear states when query is wiped out manually
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setSearchedProject(null)
@@ -47,7 +47,6 @@ const ProjectsPage =() => {
     setCurrentPage(1)
 
     try {
-      // 1. Attempt to fetch exact project by name using the API `/get-project/:name`
       const exactProject = await projectService.getByName(query)
       if (exactProject) {
         setSearchedProject(exactProject)
@@ -56,7 +55,6 @@ const ProjectsPage =() => {
         triggerLocalFallback(query)
       }
     } catch {
-      // 2. If API fails (e.g. 404), fall back to fuzzy local searching in projects array
       triggerLocalFallback(query)
     } finally {
       setSearchLoading(false)
@@ -74,7 +72,6 @@ const ProjectsPage =() => {
     setLocalMatches(filtered)
   }
 
-  // Determine what list to render
   const getDisplayList = (): Project[] => {
     if (!hasSearched) return projects
     if (searchedProject) return [searchedProject]
@@ -88,7 +85,7 @@ const ProjectsPage =() => {
   return (
     <div className="projects-page">
       <div className="projects-page__container">
-        
+
         {/* Search controls */}
         <form className="projects-page__search-box" onSubmit={handleSearch}>
           <div className="projects-page__search-input-wrap">
@@ -100,14 +97,28 @@ const ProjectsPage =() => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button
+
+          {/* Desktop button */}
+          <Button
             type="submit"
+            variant="primary"
             className="projects-page__search-btn"
             disabled={searchLoading}
+            icon={searchLoading ? <span className="projects-page__spinner" /> : <SearchOutlined />}
           >
-            {searchLoading ? <span className="projects-page__spinner" /> : <SearchOutlined />}
-            <span>{t('searchBtn') || 'Tìm kiếm'}</span>
-          </button>
+            {t('searchBtn') || 'Tìm kiếm'}
+          </Button>
+
+          {/* Mobile button — icon tròn */}
+          <Button
+            type="submit"
+            variant="primary"
+            className="projects-page__search-btn-mobile"
+            disabled={searchLoading}
+            icon={searchLoading ? <span className="projects-page__spinner" /> : <SearchOutlined />}
+            borderRadius="50%"
+            style={{ width: '48px', height: '48px', padding: 0 }}
+          />
         </form>
 
         {/* Content lists */}
@@ -129,7 +140,6 @@ const ProjectsPage =() => {
               ))}
             </div>
 
-            {/* Antd Pagination encapsulated in UI */}
             <Pagination
               current={currentPage}
               pageSize={pageSize}
@@ -143,4 +153,5 @@ const ProjectsPage =() => {
     </div>
   )
 }
+
 export default ProjectsPage
