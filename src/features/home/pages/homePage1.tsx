@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { Skeleton } from 'antd'
 import { BirdsBackground } from '../components/BirdsBackground.js'
 import { useAdminProfile } from '../../admin/adminProfile/hook/useAdminProfile.js'
 import { useProjectQuery } from '../../../hooks/useProjectQuery'
@@ -17,34 +18,48 @@ export default function HomePage1() {
       </div>
 
       <div className="home-page__content">
-        <span className="home-page__badge">
-          {profile?.workStatus === 'READY' ? t('available') : t('unavailable')}
-        </span>
 
-        <h1 className="home-page__title">
-          {loading ? '...' : (profile?.name ?? t('defaultName'))}
-        </h1>
+        {/* Badge */}
+        {loading
+          ? <Skeleton.Button active size="small" shape="round" style={{ width: 140, marginBottom: 12 }} />
+          : <span className="home-page__badge">
+              {profile?.workStatus === 'READY' ? t('available') : t('unavailable')}
+            </span>
+        }
 
-        <h2 className="home-page__role">
-          {loading ? '...' : (profile?.position ?? t('defaultPosition'))}
-        </h2>
+        {/* Name */}
+        {loading
+          ? <Skeleton.Input active style={{ height: 48, borderRadius: 8, width: 260, marginBottom: 8 }} />
+          : <h1 className="home-page__title">{profile?.name ?? t('defaultName')}</h1>
+        }
+
+        {/* Position */}
+        {loading
+          ? <Skeleton.Input active style={{ height: 28, borderRadius: 8, width: 320, marginBottom: 16 }} />
+          : <h2 className="home-page__role">{profile?.position ?? t('defaultPosition')}</h2>
+        }
 
         <div className="home-page__divider" />
 
-        <p className="home-page__description">
-          {loading ? '...' : (profile?.bio ?? t('defaultBio'))}
-        </p>
+        {/* Bio */}
+        {loading
+          ? <Skeleton active paragraph={{ rows: 2, width: [320, 300] }} title={{ width: 400 }} style={{ marginBottom: 16 }} />
+          : <p className="home-page__description">{profile?.bio ?? t('defaultBio')}</p>
+        }
 
+        {/* Skills chips */}
         <div className="home-page__chips">
           {loading
-            ? null
+            ? Array.from({ length: 4 }).map((_, i) => (
+                <Skeleton.Button key={i} active size="small" shape="round" style={{ width: 72 }} />
+              ))
             : profile?.skills?.map((skill, index) => (
                 <span key={index} className="home-page__chip">{skill}</span>
               ))
           }
         </div>
 
-        {/* Project count indicator */}
+        {/* Project count */}
         {!loading && projects.length > 0 && (
           <div className="home-page__stats">
             <span className="home-page__projects-count">
@@ -53,7 +68,7 @@ export default function HomePage1() {
           </div>
         )}
 
-        {/* View Projects CTA */}
+        {/* CTA */}
         <div className="home-page__cta">
           <Link to="/projects">
             <Button variant="primary" size="lg" borderRadius="var(--radius-full)" style={{ padding: '15px 30px' }}>
@@ -61,6 +76,7 @@ export default function HomePage1() {
             </Button>
           </Link>
         </div>
+
       </div>
     </div>
   )
