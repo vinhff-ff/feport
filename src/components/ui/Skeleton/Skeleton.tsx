@@ -122,6 +122,147 @@ const SkeletonInput = ({
   );
 };
 
+export interface SkeletonCardProps extends Omit<SkeletonProps, 'variant'> {}
+
+const SkeletonCard = ({
+  active = true,
+  style,
+  className = '',
+  ...rest
+}: SkeletonCardProps) => {
+  return (
+    <div className={`ui-project-card skeleton-card-loading ${className}`} style={style} {...rest}>
+      <div className="ui-project-card__cover">
+        <Skeleton variant="rect" height="100%" active={active} style={{borderRadius:'0px'}}/>
+      </div>
+      <div className="ui-project-card__content" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+        <Skeleton variant="text" width="60%" height="20px" active={active} style={{ borderRadius: '4px', marginBottom: '4px' }} />
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '4px', marginBottom: '8px' }}>
+          <Skeleton variant="text" width="100%" height="12px" active={active} style={{ borderRadius: '3px' }} />
+          <Skeleton variant="text" width="85%" height="12px" active={active} style={{ borderRadius: '3px' }} />
+        </div>
+        <div className="ui-project-card__actions" style={{ display: 'flex', gap: '8px', marginTop: 'auto', width: '100%' }}>
+          <SkeletonButton active={active} size="small" shape="round" style={{ flex: 1, height: '32px' }} />
+          <SkeletonButton active={active} size="small" shape="round" style={{ flex: 1, height: '32px' }} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export interface SkeletonSkillProps extends Omit<SkeletonProps, 'variant'> {
+  index?: number;
+}
+
+const SkeletonSkill = ({
+  active = true,
+  index = 0,
+  style,
+  className = '',
+  ...rest
+}: SkeletonSkillProps) => {
+  return (
+    <div
+      className={`home-page-2__skill-card skeleton-skill-loading ${className}`}
+      style={{ '--skill-index': index, ...style } as React.CSSProperties}
+      {...rest}
+    >
+      <div className="home-page-2__skill-icon-wrap">
+        <Skeleton variant="circle" width="100%" height="100%" active={active} />
+      </div>
+      <Skeleton variant="text" width="60%" height="13px" active={active} style={{ borderRadius: '3px' }} />
+    </div>
+  );
+};
+
+export interface SkeletonTimelineProps extends Omit<SkeletonProps, 'variant'> {
+  itemsCount?: number;
+}
+
+const SkeletonTimeline = ({
+  active = true,
+  itemsCount = 3,
+  style,
+  className = '',
+  ...rest
+}: SkeletonTimelineProps) => {
+  return (
+    <div
+      className={`home-page-3__timeline-container ${className}`}
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '24px',
+        width: '100%',
+        position: 'relative',
+        paddingLeft: '24px',
+        borderLeft: '2px solid var(--color-card-border, rgba(255, 255, 255, 0.08))',
+        ...style
+      }}
+      {...rest}
+    >
+      {Array.from({ length: itemsCount }).map((_, idx) => (
+        <div key={idx} style={{ position: 'relative', width: '100%' }}>
+          {/* Dot */}
+          <div
+            style={{
+              position: 'absolute',
+              left: '-33px',
+              top: '4px',
+              width: '16px',
+              height: '16px',
+              borderRadius: '50%',
+              backgroundColor: 'var(--color-primary)',
+              border: '4px solid var(--color-background)',
+              boxShadow: '0 0 10px rgba(129, 140, 248, 0.3)'
+            }}
+          />
+          
+          {/* Header */}
+          <div className="home-page-3__step-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+            <Skeleton variant="text" width="40%" height="20px" active={active} style={{ borderRadius: '4px' }} />
+            <Skeleton variant="text" width="20%" height="14px" active={active} style={{ borderRadius: '3px' }} />
+          </div>
+
+          {/* Description Card */}
+          <div className="home-page-3__step-body" style={{ marginTop: '12px', width: '100%', pointerEvents: 'none' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <Skeleton variant="text" width="100%" height="14px" active={active} style={{ borderRadius: '3px' }} />
+              <Skeleton variant="text" width="95%" height="14px" active={active} style={{ borderRadius: '3px' }} />
+              <Skeleton variant="text" width="70%" height="14px" active={active} style={{ borderRadius: '3px' }} />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+export interface SkeletonContactProps extends Omit<SkeletonProps, 'variant'> {}
+
+const SkeletonContact = ({
+  active = true,
+  style,
+  className = '',
+  ...rest
+}: SkeletonContactProps) => {
+  return (
+    <div
+      className={`home-page-5__card skeleton-contact-loading ${className}`}
+      style={{ pointerEvents: 'none', ...style }}
+      {...rest}
+    >
+      <div className="home-page-5__icon-wrap">
+        <Skeleton variant="rect" width="100%" height="100%" borderRadius="12px" active={active} />
+      </div>
+      <div className="home-page-5__info" style={{ display: 'flex', flexDirection: 'column', gap: '6px', flex: 1 }}>
+        <Skeleton variant="text" width="50%" height="14px" active={active} style={{ borderRadius: '3px' }} />
+        <Skeleton variant="text" width="80%" height="12px" active={active} style={{ borderRadius: '3px' }} />
+      </div>
+    </div>
+  );
+};
+
 // ─── High-level Ant-design compatible list layout ─────────────
 
 export interface SkeletonParagraphProps {
@@ -223,10 +364,18 @@ const SkeletonContainer = ({
 type SkeletonComponentType = typeof SkeletonContainer & {
   Button: typeof SkeletonButton;
   Input: typeof SkeletonInput;
+  Card: typeof SkeletonCard;
+  Skill: typeof SkeletonSkill;
+  Timeline: typeof SkeletonTimeline;
+  Contact: typeof SkeletonContact;
 };
 
 const ExportedSkeleton = SkeletonContainer as SkeletonComponentType;
 ExportedSkeleton.Button = SkeletonButton;
 ExportedSkeleton.Input = SkeletonInput;
+ExportedSkeleton.Card = SkeletonCard;
+ExportedSkeleton.Skill = SkeletonSkill;
+ExportedSkeleton.Timeline = SkeletonTimeline;
+ExportedSkeleton.Contact = SkeletonContact;
 
 export default ExportedSkeleton;

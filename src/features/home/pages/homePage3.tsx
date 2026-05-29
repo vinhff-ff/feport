@@ -2,6 +2,7 @@ import Steps from '../../../components/ui/Steps'
 import { CalendarOutlined, TrophyOutlined } from '@ant-design/icons'
 import { useExperienceQuery } from '../../../hooks/useExperienceQuery'
 import { useTranslation } from '../../../i18n/useTranslation'
+import Skeleton from '../../../components/ui/Skeleton'
 
 export default function HomePage3() {
   const { experiences = [], loading } = useExperienceQuery()
@@ -46,10 +47,7 @@ export default function HomePage3() {
         </p>
 
         {loading ? (
-          <div className="home-page-3__loading">
-            <span className="home-page-3__spinner" />
-            <span>{t('loadingExp')}</span>
-          </div>
+          <Skeleton.Timeline itemsCount={2} />
         ) : sortedExperiences.length === 0 ? (
           <div className="home-page-3__empty">
             <CalendarOutlined />

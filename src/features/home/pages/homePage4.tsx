@@ -4,6 +4,7 @@ import { useProjectQuery } from '../../../hooks/useProjectQuery'
 import { useTranslation } from '../../../i18n/useTranslation'
 import ProjectCard from '../../../components/ui/ProjectCard'
 import Button from '../../../components/ui/Button/Button'
+import Skeleton from '../../../components/ui/Skeleton'
 
 const HomePage4 = () => {
   const { projects = [], loading } = useProjectQuery()
@@ -27,9 +28,10 @@ const HomePage4 = () => {
         </p>
 
         {loading ? (
-          <div className="home-page-4__loading">
-            <span className="home-page-4__spinner" />
-            <span>{t('loadingProjects')}</span>
+          <div className="home-page-4__grid">
+            {Array.from({ length: 3 }).map((_, idx) => (
+              <Skeleton.Card key={idx} />
+            ))}
           </div>
         ) : projects.length === 0 ? (
           <div className="home-page-4__empty">

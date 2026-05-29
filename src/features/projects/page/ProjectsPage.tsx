@@ -6,6 +6,7 @@ import projectService from '../../admin/project/service/projectService'
 import ProjectCard from '../../../components/ui/ProjectCard'
 import Pagination from '../../../components/ui/Pagination'
 import Button from '../../../components/ui/Button'
+import Skeleton from '../../../components/ui/Skeleton'
 import { paginateData, countProjects } from '../../../utils/projectHelpers'
 import type { Project } from '../../../types/Project'
 import '../style/ProjectsPage.scss'
@@ -121,11 +122,11 @@ const ProjectsPage = () => {
           />
         </form>
 
-        {/* Content lists */}
         {loading ? (
-          <div className="projects-page__loading">
-            <span className="projects-page__spinner" />
-            <span>{t('loadingProjects')}</span>
+          <div className="projects-page__grid">
+            {Array.from({ length: pageSize }).map((_, idx) => (
+              <Skeleton.Card key={idx} />
+            ))}
           </div>
         ) : paginatedProjects.length === 0 ? (
           <div className="projects-page__empty">

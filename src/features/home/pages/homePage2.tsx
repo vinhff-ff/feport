@@ -1,6 +1,7 @@
 import { TrophyOutlined } from '@ant-design/icons'
 import { useSkillsQuery } from '../../../hooks/useSkillsQuery'
 import { useTranslation } from '../../../i18n/useTranslation'
+import Skeleton from '../../../components/ui/Skeleton'
 
 export default function HomePage2() {
   const { skills = [], loading } = useSkillsQuery()
@@ -21,9 +22,10 @@ export default function HomePage2() {
         </p>
 
         {loading ? (
-          <div className="home-page-2__loading">
-            <span className="home-page-2__spinner" />
-            <span>{t('loadingSkills')}</span>
+          <div className="home-page-2__skills-grid">
+            {Array.from({ length: 8 }).map((_, index) => (
+              <Skeleton.Skill key={index} index={index} />
+            ))}
           </div>
         ) : skills.length === 0 ? (
           <div className="home-page-2__empty">

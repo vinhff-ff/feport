@@ -10,6 +10,7 @@ import {
 } from '@ant-design/icons'
 import { useContactQuery } from '../../../hooks/useContactQuery'
 import { useTranslation } from '../../../i18n/useTranslation'
+import Skeleton from '../../../components/ui/Skeleton'
 import '../styles/homePage5.scss'
 
 export default function HomePage5() {
@@ -44,9 +45,10 @@ export default function HomePage5() {
 
         {/* Dynamic Content */}
         {loading ? (
-          <div className="home-page-5__loading">
-            <span className="home-page-5__spinner" />
-            <span>{t('loadingContacts')}</span>
+          <div className="home-page-5__grid">
+            {Array.from({ length: 4 }).map((_, idx) => (
+              <Skeleton.Contact key={idx} />
+            ))}
           </div>
         ) : contacts.length === 0 ? (
           <div className="home-page-5__empty">
