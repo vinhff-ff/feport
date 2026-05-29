@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Skeleton } from 'antd'
+import Skeleton from '../../../components/ui/Skeleton'
 import { BirdsBackground } from '../components/BirdsBackground.js'
 import { useAdminProfile } from '../../admin/adminProfile/hook/useAdminProfile.js'
 import { useProjectQuery } from '../../../hooks/useProjectQuery'
@@ -23,7 +23,7 @@ export default function HomePage1() {
         {loading
           ? <Skeleton.Button active size="small" shape="round" style={{ width: 140, marginBottom: 12 }} />
           : <span className="home-page__badge">
-              {profile?.workStatus === 'READY' ? t('available') : t('unavailable')}
+              {profile?.workStatus === 'READY' ? t('unavailable') : t('available')}
             </span>
         }
 
@@ -43,7 +43,7 @@ export default function HomePage1() {
 
         {/* Bio */}
         {loading
-          ? <Skeleton active paragraph={{ rows: 2, width: [320, 300] }} title={{ width: 400 }} style={{ marginBottom: 16 }} />
+          ? <Skeleton active paragraph={{ rows: 2, width: [320, 300] }} title={{ width: 320 }} style={{ marginBottom: 16 }} />
           : <p className="home-page__description">{profile?.bio ?? t('defaultBio')}</p>
         }
 
